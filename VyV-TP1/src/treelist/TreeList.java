@@ -3,9 +3,9 @@ package treelist;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
+import java.util.Stack;
 
 import ar.verificacion.validacion.IList;
-
 
 /**
  * Implementacion del TAD Lista, usando una estructura dinámica, más
@@ -92,34 +92,33 @@ public class TreeList implements IList {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public boolean repOK() {
-		if (root.getInfo() == null) {
+		if (root == null) {
 			return size == 0;
 		} else {
-			// chequeamos que no haya ciclos
+			//primero revisamos que no sea un grafo con ciclos.
 			Set visited = new HashSet();
-			visited.add(root);
-			LinkedList workList = new LinkedList();
-			workList.add(root);
-			while (!workList.isEmpty()) {
-				Node current = (Node) workList.removeFirst();
-				if (current.getLeft() != null) {
-					if (!visited.add(current.getLeft()))
-						return false;
-
-					workList.add(current.getLeft());
+			Node current = root;
+			Node lastSortedNode = null;
+			Stack parentStack = new Stack();
+			while (!parentStack.isEmpty() || current != null) {
+				if (!visited.add(current)){
+					return false;
 				}
-				if (current.getRight() != null) {
-					if (!visited.add(current.getRight()))
+				if (current != null) {
+					parentStack.push(current);
+					current = current.getLeft();
+				} else {
+					current = (Node) parentStack.pop();
+					// mientras, trabajamos el nodo visitado, revisando que este ordenado
+					if (lastSortedNode!=null && current.getIndex()<=lastSortedNode.getIndex()) {
 						return false;
-
-					workList.add(current.getRight());
+					}
+					current = current.getRight();
 				}
 			}
-
+			
 			// chequeamos que el tamaño sea consistente
 			return (visited.size() == size);
-			
-			//TODO chequear que el arbol izq es menor que raiz... etc
 		}
 	}
 
