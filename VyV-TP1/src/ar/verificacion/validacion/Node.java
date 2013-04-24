@@ -11,21 +11,21 @@ public class Node {
 
 	private int index;
 
-	private Comparable<Object> info;
+	private Object info;
 
-	Node(Node left, Node right, int index, Comparable<Object> info) {
+	Node(Node left, Node right, int index, Object info) {
 		this.left = left;
 		this.right = right;
 		this.index = index;
 		this.info = info;
 	}
 
-	Node(int index, Comparable<Object> info) {
+	Node(int index, Object info) {
 		this.index = index;
 		this.info = info;
 	}
 
-	Node(Comparable<Object> info) {
+	Node(Object info) {
 		this.info = info;
 	}
 
@@ -41,7 +41,7 @@ public class Node {
 		this.right = right;
 	}
 
-	public void setInfo(Comparable<Object> info) {
+	public void setInfo(Object info) {
 		this.info = info;
 	}
 
@@ -61,7 +61,7 @@ public class Node {
 		return this.index;
 	}
 
-	public Comparable<Object> getInfo() {
+	public Object getInfo() {
 		return this.info;
 	}
 
