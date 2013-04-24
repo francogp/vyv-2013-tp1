@@ -30,19 +30,19 @@ public class TreeList implements IList {
 		return size;
 	}
 
-	/*--------------------------------------------------------------------*/
-	/* removeAll(): removes all the items from the list */
-	/* Precondition: None */
-	/* Postcondition: all elements are removed from the list. */
-	/*--------------------------------------------------------------------*/
+	/**-------------------------------------------------------------------
+	 * removeAll(): removes all the items from the list 
+	 * Precondition: None 
+	 * Postcondition: all elements are removed from the list. 
+	 *--------------------------------------------------------------------*/
 	public void removeAll() {
 		root = null;
 	}
 
-	/*--------------------------------------------------------------------*/
-	/* add(int index, Object item ): adds item to the list in position */
-	/* index */
-	/*--------------------------------------------------------------------*/
+	/**--------------------------------------------------------------------
+	 * add(int index, Object item ): adds item to the list in position 
+	 * index 
+	 *--------------------------------------------------------------------*/
 	public void add(int index, Object item) throws RuntimeException,
 			IndexOutOfBoundsException {
 		if (item == null)
@@ -50,14 +50,48 @@ public class TreeList implements IList {
 		if (index < 0 || index > size)
 			throw new IndexOutOfBoundsException(
 					"index out of bounds in tree list");
-
+		increaseIndexNodes(root, index); // incrementa el indice de todos los nodos que tiene indice mayor o igual al indice dado
+		Node aux = new Node(index, item);
+		add2 (root, aux);
 		size++;
-		// TODO: Partially implemented routine;
 	}
+	
+	private void add2 (Node root, Node aux){
+		if (root.getIndex()>aux.getIndex()){
+			if (root.getLeft()== null){
+				root.setLeft(aux);
+			} else {
+				add2 (root.getLeft(), aux);
+			}
+		} else {
+			if (root.getRight()== null){
+				root.setRight(aux);
+			} else {
+				add2 (root.getRight(), aux);
+			}
+		}
+		
+	}
+	
+	 private int increaseIndex (int index){
+		 return index++;
+	 }
+	 
+	 private void increaseIndexNodes (Node root, int index){
+		 if (root.getIndex()>=index){
+			 root.setIndex(increaseIndex(root.getIndex()));
+		 }
+		 if (root.getLeft()!= null){
+			 increaseIndexNodes (root.getLeft(), index);
+		 }
+		 if (root.getRight()!= null){
+			 increaseIndexNodes (root.getRight(), index);
+		 }
+	 }
 
-	/*--------------------------------------------------------------------*/
-	/* remove(int index): removes item in the index position of the list */
-	/*--------------------------------------------------------------------*/
+	/**-------------------------------------------------------------------
+	 * remove(int index): removes item in the index position of the list 
+	 *--------------------------------------------------------------------*/
 	public void remove(int index) throws IndexOutOfBoundsException {
 		if (index < 0 || index >= size)
 			throw new IndexOutOfBoundsException(
@@ -66,17 +100,28 @@ public class TreeList implements IList {
 		size--;
 		// TODO: Partially implemented routine;
 	}
-
-	/*--------------------------------------------------------------------*/
-	/* get(int index): returns the reference to the object in position */
-	/* index */
-	/*--------------------------------------------------------------------*/
+	
+	/**-------------------------------------------------------------------
+	 * get(int index): returns the reference to the object in position 
+	 * index 
+	 *--------------------------------------------------------------------*/
 	public Object get(int index) throws IndexOutOfBoundsException {
 		if (index < 0 || index >= size)
 			throw new IndexOutOfBoundsException(
 					"index out of bounds in tree list");
-		// TODO: Partially implemented routine;
-		return null;
+		return search(root, index);
+	}
+	
+	private Object search (Node root, int index){
+		if (root.getIndex()==index) {
+			return root.getInfo();
+		} else {
+			if (root.getIndex()<index){
+				return search(root.getRight(), index);
+			} else {
+				return search(root.getLeft(), index);
+			}
+		}
 	}
 
 	/**
