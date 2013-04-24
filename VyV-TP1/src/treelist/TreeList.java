@@ -1,7 +1,6 @@
 package treelist;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Set;
 import java.util.Stack;
 
@@ -154,15 +153,17 @@ public class TreeList implements IList {
 					current = current.getLeft();
 				} else {
 					current = (Node) parentStack.pop();
-					// mientras, trabajamos el nodo visitado, revisando que este ordenado
+					// mientras revisamos los ciclos, trabajamos el nodo visitado, 
+					// revisando que este ordenado de forma correcta
 					if (lastSortedNode!=null && current.getIndex()<=lastSortedNode.getIndex()) {
 						return false;
 					}
+					//continuamos el recorrido de la estructura
 					current = current.getRight();
 				}
 			}
 			
-			// chequeamos que el tamaño sea consistente
+			// revisamos que el tamaño sea consistente
 			return (visited.size() == size);
 		}
 	}
