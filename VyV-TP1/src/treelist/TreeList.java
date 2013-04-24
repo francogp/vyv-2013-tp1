@@ -50,19 +50,7 @@ public class TreeList implements IList {
 		if (index < 0 || index > size)
 			throw new IndexOutOfBoundsException(
 					"index out of bounds in tree list");
-		Node nodoNuevo = new Node(index, item);
-		Boolean inserted = true;
-		while (!inserted) {
-			if (size == 0) {
-				root = nodoNuevo;
-			} else {
-				if (root.getInfo().compareTo(nodoNuevo.getInfo()) > 0) {
-					if (root.getLeft() == null) {
 
-					}
-				}
-			}
-		}
 		size++;
 		// TODO: Partially implemented routine;
 	}
