@@ -1,4 +1,4 @@
-package ar.verificacion.validacion;
+package treelist;
 
 import java.util.HashSet;
 import java.util.Set;

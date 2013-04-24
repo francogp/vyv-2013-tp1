@@ -1,19 +1,22 @@
-package ar.verificacion.validacion;
+package treelist;
 
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
+import ar.verificacion.validacion.IList;
+
+
 /**
  * Implementacion del TAD Lista, usando una estructura dinámica, más
  * precisamente un árbol binario de búsqueda. Esta clase implementa los métodos
- * abstractos declarados en List, y corresponde a una implementación
+ * abstractos declarados en IList, y corresponde a una implementación
  * polimórfica.
  * 
  * @author Nazareno Aguirre, Valeria Bengolea & Renzo Degiovanni
  * @version 0.1 22/04/2013
  */
-public class TreeList implements List {
+public class TreeList implements IList {
 
 	private Node root; // tree that stores list' elements
 
@@ -40,8 +43,8 @@ public class TreeList implements List {
 	/* add(int index, Object item ): adds item to the list in position */
 	/* index */
 	/*--------------------------------------------------------------------*/
-	public void add(int index, Comparable<Object> item)
-			throws RuntimeException, IndexOutOfBoundsException {
+	public void add(int index, Object item) throws RuntimeException,
+			IndexOutOfBoundsException {
 		if (item == null)
 			throw new RuntimeException("attempting to insert null object");
 		if (index < 0 || index > size)
@@ -103,30 +106,33 @@ public class TreeList implements List {
 	public boolean repOK() {
 		if (root.getInfo() == null) {
 			return size == 0;
-		}
-		// checks that tree has no cycle
-		Set visited = new HashSet();
-		visited.add(root);
-		LinkedList workList = new LinkedList();
-		workList.add(root);
-		while (!workList.isEmpty()) {
-			Node current = (Node) workList.removeFirst();
-			if (current.getLeft() != null) {
-				if (!visited.add(current.getLeft()))
-					return false;
+		} else {
+			// chequeamos que no haya ciclos
+			Set visited = new HashSet();
+			visited.add(root);
+			LinkedList workList = new LinkedList();
+			workList.add(root);
+			while (!workList.isEmpty()) {
+				Node current = (Node) workList.removeFirst();
+				if (current.getLeft() != null) {
+					if (!visited.add(current.getLeft()))
+						return false;
 
-				workList.add(current.getLeft());
+					workList.add(current.getLeft());
+				}
+				if (current.getRight() != null) {
+					if (!visited.add(current.getRight()))
+						return false;
+
+					workList.add(current.getRight());
+				}
 			}
-			if (current.getRight() != null) {
-				if (!visited.add(current.getRight()))
-					return false;
 
-				workList.add(current.getRight());
-			}
+			// chequeamos que el tamaño sea consistente
+			return (visited.size() == size);
+			
+			//TODO chequear que el arbol izq es menor que raiz... etc
 		}
-
-		// checks that size is consistent
-		return (visited.size() == size);
 	}
 
 	public String toString() {

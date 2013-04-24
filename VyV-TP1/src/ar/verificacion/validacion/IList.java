@@ -1,6 +1,6 @@
 package ar.verificacion.validacion;
 
-public interface List {
+public interface IList {
 
 	public boolean isEmpty();
 
