@@ -5,34 +5,33 @@ import java.util.Set;
 
 public class Node {
 
-    private Node left; 
+	private Node left;
 
-    private Node right; 
-    
-    private int index; 
+	private Node right;
 
-    private Comparable<Object> info; 
-    
+	private int index;
 
-    Node(Node left, Node right, int index, Comparable<Object> info) {
-        this.left = left;
-        this.right = right;
-        this.index = index;
-        this.info = info;
-    }
+	private Comparable<Object> info;
 
-    Node(int index, Comparable<Object> info) {
-        this.index = index;    
-        this.info = info;
-    }
-    
-    Node(Comparable<Object> info) {
-        this.info = info;
-    }
+	Node(Node left, Node right, int index, Comparable<Object> info) {
+		this.left = left;
+		this.right = right;
+		this.index = index;
+		this.info = info;
+	}
 
-    public Node() {
+	Node(int index, Comparable<Object> info) {
+		this.index = index;
+		this.info = info;
+	}
 
-    }
+	Node(Comparable<Object> info) {
+		this.info = info;
+	}
+
+	public Node() {
+
+	}
 
 	public void setLeft(Node left) {
 		this.left = left;
@@ -49,7 +48,7 @@ public class Node {
 	public void setIndex(int index) {
 		this.index = index;
 	}
-	
+
 	public Node getLeft() {
 		return this.left;
 	}
@@ -65,51 +64,51 @@ public class Node {
 	public Comparable<Object> getInfo() {
 		return this.info;
 	}
-		
-    public String toString() {
-        Set<Node> visited = new HashSet<>();
-        visited.add(this);
-        return toString(visited);
-    }
 
-    private String toString(Set<Node> visited) {
-        StringBuffer buf = new StringBuffer();
-        // buf.append(" ");
-        // buf.append(System.identityHashCode(this));
-        buf.append(" {");
-        if (left != null)
-            if (visited.add(left))
-                buf.append(left.toString(visited));
-            else
-                buf.append("!tree");
+	public String toString() {
+		Set<Node> visited = new HashSet<>();
+		visited.add(this);
+		return toString(visited);
+	}
 
-        buf.append("(" + this.index + ", " + this.info.toString() + ")");
+	private String toString(Set<Node> visited) {
+		StringBuffer buf = new StringBuffer();
+		// buf.append(" ");
+		// buf.append(System.identityHashCode(this));
+		buf.append(" {");
+		if (left != null)
+			if (visited.add(left))
+				buf.append(left.toString(visited));
+			else
+				buf.append("!tree");
 
-        if (right != null)
-            if (visited.add(right))
-                buf.append(right.toString(visited));
-            else
-                buf.append("!tree");
-        buf.append("} ");
-        return buf.toString();
-    }
+		buf.append("(" + this.index + ", " + this.info.toString() + ")");
 
-    public boolean equals(Object that) {
-        if (!(that instanceof Node))
-            return false;
-        Node n = (Node) that;
-        if (this.index != (n.index) || !this.info.equals(n.info))
-            return false;
-        boolean b = true;
-        if (left == null)
-            b = b && (n.left == null);
-        else
-            b = b && (left.equals(n.left));
-        if (right == null)
-            b = b && (n.right == null);
-        else
-            b = b && (right.equals(n.right));
-        return b;
-    }
+		if (right != null)
+			if (visited.add(right))
+				buf.append(right.toString(visited));
+			else
+				buf.append("!tree");
+		buf.append("} ");
+		return buf.toString();
+	}
+
+	public boolean equals(Object that) {
+		if (!(that instanceof Node))
+			return false;
+		Node n = (Node) that;
+		if (this.index != (n.index) || !this.info.equals(n.info))
+			return false;
+		boolean b = true;
+		if (left == null)
+			b = b && (n.left == null);
+		else
+			b = b && (left.equals(n.left));
+		if (right == null)
+			b = b && (n.right == null);
+		else
+			b = b && (right.equals(n.right));
+		return b;
+	}
 
 }
