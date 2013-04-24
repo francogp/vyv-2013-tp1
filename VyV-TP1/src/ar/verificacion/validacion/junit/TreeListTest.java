@@ -13,21 +13,21 @@ import org.junit.Test;
  * @author franco pellegrini
  */
 public class TreeListTest {
-    
-    /**
-     * Test method for {@link treelist.TreeList#repOK()}.
-     */
-    @Test
-    public void testRepOK() {
-        fail("Not yet implemented");
-    }
-    
-    /**
-     * Test method for {@link treelist.TreeList#toString()}.
-     */
-    @Test
-    public void testToString() {
-        fail("Not yet implemented");
-    }
-    
+
+	/**
+	 * Test method for {@link treelist.TreeList#repOK()}.
+	 */
+	@Test
+	public void testRepOK() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link treelist.TreeList#toString()}.
+	 */
+	@Test
+	public void testToString() {
+		fail("Not yet implemented");
+	}
+
 }
