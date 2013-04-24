@@ -99,10 +99,11 @@ public class TreeList implements List {
 	 *        nodos del árbol, y las claves del árbol son 0..size-1.
 	 */
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public boolean repOK() {
-		if (root.getInfo() == null)
+		if (root.getInfo() == null) {
 			return size == 0;
-
+		}
 		// checks that tree has no cycle
 		Set visited = new HashSet();
 		visited.add(root);
