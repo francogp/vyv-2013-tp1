@@ -241,6 +241,7 @@ public class TreeList implements List {
         root.setRight(root.getRight().getRight());
     }
     
+
     /*
      * --------------------------------------------------------------------
      * removeNodeTwoChild(Node root): remover un nodo que tiene ambos hijos.
@@ -286,13 +287,11 @@ public class TreeList implements List {
                                              // In-Order
             
             // utilizamos un algoritmo In-order iterativo para recorrer la
-            // estructura
-            // revisando que no sea ciclica y que los elementos esten en el
-            // orden correcto
+            // estructura revisando que no sea ciclica y que los elementos 
+            // esten en el orden correcto
             while (!parentStack.isEmpty() || (current != null)) {
                 // si el nodo ya fue visitado, el grafo es ciclico y no es un
-                // arbol
-                // binario
+                // arbol binario
                 if ((current != null) && !visited.add(current)) {
                     return false;
                 }
