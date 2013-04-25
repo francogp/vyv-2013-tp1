@@ -68,6 +68,8 @@ public class TreeList implements IList {
         
     }
     
+    
+    
     /**
      * -------------------------------------------------------------------
      * get(int index): returns the reference to the object in position index
@@ -138,9 +140,63 @@ public class TreeList implements IList {
             throw new IndexOutOfBoundsException(
                     "index out of bounds in tree list");
         }
-        
+        remove2 (root, index);
         size--;
-        // TODO: Partially implemented routine;
+    }
+    
+    private void remove2 (Node root, int index){
+        if (root.getIndex()==index){ //si index es igual a indice de root
+            if (root.getLeft()!=null && root.getRight()!=null){ //si root tiene 2 hijos
+                removeNodeTwoChild(root);
+            } else {
+                if (root.getLeft()!=null && root.getRight()==null) { // si root tiene solo el hijo izquierdo
+                    removeNodeChildLeft(root);
+                } else {
+                    if (root.getLeft()==null && root.getRight()!=null){ // si root tiene solo el hijo derecho
+                        removeNodeChildRight(root);
+                    } else { // si root no tiene hijos
+                        root.setInfo(null);
+                    }
+                }
+            }
+        } else { //si index es distinto a indice de root
+            if (root.getIndex()>index){ //si index es menor a indice de root
+                remove2(root.getLeft(), index);
+            } else { // si index es mayor a indice de root
+                remove2(root.getRight(), index);
+            }
+        }
+    }
+    
+    private void removeNodeChildLeft (Node root){
+        root.setIndex(root.getLeft().getIndex());
+        root.setInfo(root.getLeft().getInfo());
+        root.setLeft(root.getLeft().getLeft());
+        root.setRight(root.getLeft().getRight());
+    }
+    
+    private void removeNodeChildRight (Node root){
+        root.setIndex(root.getRight().getIndex());
+        root.setInfo(root.getRight().getInfo());
+        root.setLeft(root.getRight().getLeft());
+        root.setRight(root.getRight().getRight());
+    }
+    
+    private void removeNodeTwoChild (Node root) {
+        root.setInfo(root.getRight().getInfo());
+        if (root.getRight().getLeft()!= null && root.getRight().getRight()!= null){
+            removeNodeTwoChild (root.getRight());
+        } else {
+            if (root.getRight().getLeft()!= null){
+                root.setRight(root.getRight().getLeft());
+            } else {
+                if (root.getRight().getRight()!= null){
+                    root.setRight(root.getRight().getRight());
+                } else {
+                    root.setRight(null);
+                }
+            }     
+        }
     }
     
     /**
