@@ -69,31 +69,6 @@ public class TreeListRepOKTest {
      * Test method for {@link treelist.TreeList#repOK()}. Good Bin Tree.
      */
     @Test
-    public void testRepOKGoodBinTreeEmpty() {
-        TreeList tree = new TreeList();
-        tree.setRoot(null);
-        tree.setSize(0);
-        
-        assertTrue(tree.repOK());
-    }
-    
-    /**
-     * Test method for {@link treelist.TreeList#repOK()}. One element Bin Tree.
-     */
-    @Test
-    public void testRepOKGoodBinTreeOneElement() {
-        TreeList tree = new TreeList();
-        Node nodo1 = new Node(0, "nodo numero 1");
-        tree.setRoot(nodo1);        
-        tree.setSize(1);
-        
-        assertTrue(tree.repOK());
-    }    
-    
-    /**
-     * Test method for {@link treelist.TreeList#repOK()}. Good Bin Tree.
-     */
-    @Test
     public void testRepOKGoodBinTree() {
         TreeList tree = new TreeList();
         Node nodo1 = new Node(0, "nodo numero 1");
@@ -109,6 +84,31 @@ public class TreeListRepOKTest {
         nodo2.setLeft(nodo1);
         nodo2.setRight(nodo3);
         tree.setSize(6);
+        
+        assertTrue(tree.repOK());
+    }
+    
+    /**
+     * Test method for {@link treelist.TreeList#repOK()}. Good Bin Tree.
+     */
+    @Test
+    public void testRepOKGoodBinTreeEmpty() {
+        TreeList tree = new TreeList();
+        tree.setRoot(null);
+        tree.setSize(0);
+        
+        assertTrue(tree.repOK());
+    }
+    
+    /**
+     * Test method for {@link treelist.TreeList#repOK()}. One element Bin Tree.
+     */
+    @Test
+    public void testRepOKGoodBinTreeOneElement() {
+        TreeList tree = new TreeList();
+        Node nodo1 = new Node(0, "nodo numero 1");
+        tree.setRoot(nodo1);
+        tree.setSize(1);
         
         assertTrue(tree.repOK());
     }

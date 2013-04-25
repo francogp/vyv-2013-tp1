@@ -112,8 +112,10 @@ public class TreeList implements List {
     }
     
     /**
+     * --------------------------------------------------------------------
      * @return root, para testing solamente. Utilizable si se instancia un
      *         objeto tipo TreeList sin utilizar la interfaz List
+     * --------------------------------------------------------------------
      */
     public Node getRoot() {
         return root;
@@ -241,7 +243,6 @@ public class TreeList implements List {
         root.setRight(root.getRight().getRight());
     }
     
-
     /*
      * --------------------------------------------------------------------
      * removeNodeTwoChild(Node root): remover un nodo que tiene ambos hijos.
@@ -264,6 +265,7 @@ public class TreeList implements List {
     }
     
     /**
+     * --------------------------------------------------------------------
      * invariante de representación de la estructura.
      * 
      * @return true si y sólo si la estructura es internamente consistente
@@ -272,6 +274,7 @@ public class TreeList implements List {
      *        búsqueda (respecto a index), todos los elementos del árbol son no
      *        nulos (respecto a info), size se corresponde con el número de
      *        nodos del árbol, y las claves del árbol son 0..size-1.
+     * --------------------------------------------------------------------
      */
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -287,7 +290,7 @@ public class TreeList implements List {
                                              // In-Order
             
             // utilizamos un algoritmo In-order iterativo para recorrer la
-            // estructura revisando que no sea ciclica y que los elementos 
+            // estructura revisando que no sea ciclica y que los elementos
             // esten en el orden correcto
             while (!parentStack.isEmpty() || (current != null)) {
                 // si el nodo ya fue visitado, el grafo es ciclico y no es un
@@ -301,8 +304,7 @@ public class TreeList implements List {
                     current = current.getLeft();
                 } else {
                     // si estamos volviendo del lado izq, tratamos el nodo y su
-                    // lado
-                    // derecho
+                    // lado derecho
                     current = (Node) parentStack.pop();
                     
                     // mientras revisamos los ciclos, verificamos el nodo
@@ -357,20 +359,24 @@ public class TreeList implements List {
     }
     
     /**
+     * --------------------------------------------------------------------
      * @param root
      *            el root a cambiar, para testing solamente. Utilizable si se
      *            instancia un objeto tipo TreeList sin utilizar la interfaz
      *            List
+     * --------------------------------------------------------------------
      */
     public void setRoot(Node root) {
         this.root = root;
     }
     
     /**
+     * --------------------------------------------------------------------
      * @param size
      *            el size a cambiar, para testing solamente. Utilizable si se
      *            instancia un objeto tipo TreeList sin utilizar la interfaz
      *            List
+     * --------------------------------------------------------------------
      */
     public void setSize(int size) {
         this.size = size;
