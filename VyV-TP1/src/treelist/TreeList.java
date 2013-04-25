@@ -4,18 +4,18 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-import ar.verificacion.validacion.IList;
+import ar.verificacion.validacion.List;
 
 /**
  * Implementacion del TAD Lista, usando una estructura dinámica, más
  * precisamente un árbol binario de búsqueda. Esta clase implementa los métodos
- * abstractos declarados en IList, y corresponde a una implementación
+ * abstractos declarados en List, y corresponde a una implementación
  * polimórfica.
  * 
  * @author Nazareno Aguirre, Valeria Bengolea & Renzo Degiovanni
  * @version 0.1 22/04/2013
  */
-public class TreeList implements IList {
+public class TreeList implements List {
     
     private Node root; // tree that stores list' elements
                        
@@ -86,7 +86,7 @@ public class TreeList implements IList {
     
     /**
      * @return root, para testing solamente. Utilizable si se instancia un
-     *         objeto tipo TreeList sin utilizar la interfaz IList
+     *         objeto tipo TreeList sin utilizar la interfaz List
      */
     public Node getRoot() {
         return root;
@@ -282,7 +282,7 @@ public class TreeList implements IList {
      * @param root
      *            el root a cambiar, para testing solamente. Utilizable si se
      *            instancia un objeto tipo TreeList sin utilizar la interfaz
-     *            IList
+     *            List
      */
     public void setRoot(Node root) {
         this.root = root;
@@ -292,7 +292,7 @@ public class TreeList implements IList {
      * @param size
      *            el size a cambiar, para testing solamente. Utilizable si se
      *            instancia un objeto tipo TreeList sin utilizar la interfaz
-     *            IList
+     *            List
      */
     public void setSize(int size) {
         this.size = size;
