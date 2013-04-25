@@ -176,7 +176,7 @@ public class TreeList implements IList {
             Node lastSortedNode = null;
             Stack parentStack = new Stack();
             while (!parentStack.isEmpty() || (current != null)) {
-                if (!visited.add(current)) {
+                if ((current != null) && !visited.add(current)) {
                     return false;
                 }
                 if (current != null) {
@@ -191,6 +191,7 @@ public class TreeList implements IList {
                             && (current.getIndex() <= lastSortedNode.getIndex())) {
                         return false;
                     }
+                    lastSortedNode = current;
                     // continuamos el recorrido de la estructura
                     current = current.getRight();
                 }
@@ -229,6 +230,16 @@ public class TreeList implements IList {
      */
     public void setRoot(Node root) {
         this.root = root;
+    }
+    
+    /**
+     * @param size
+     *            el size a cambiar, para testing solamente. Utilizable si se
+     *            instancia un objeto tipo TreeList sin utilizar la interfaz
+     *            IList
+     */
+    public void setSize(int size) {
+        this.size = size;
     }
     
     /**
