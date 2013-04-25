@@ -1,6 +1,6 @@
 package ar.verificacion.validacion;
 
-public interface IList {
+public interface List {
     
     public void add(int index, Object item) throws RuntimeException,
             IndexOutOfBoundsException;
