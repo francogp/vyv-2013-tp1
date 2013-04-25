@@ -3,6 +3,7 @@ package treelist;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
+import randoop.*;
 
 import ar.verificacion.validacion.List;
 
@@ -12,14 +13,15 @@ import ar.verificacion.validacion.List;
  * abstractos declarados en List, y corresponde a una implementación
  * polimórfica.
  * 
- * @author Nazareno Aguirre, Valeria Bengolea & Renzo Degiovanni
+ * @author Nazareno Aguirre, Valeria Bengolea & Renzo Degiovanni, Sung Pei Jung,
+ *         Pellegrini Franco
  * @version 0.1 22/04/2013
  */
 public class TreeList implements List {
     
-    private Node root; // tree that stores list' elements
+    protected Node root; // tree that stores list' elements
                        
-    private int  size; // number of elements in the list
+    protected int  size; // number of elements in the list
                        
     /**
      * add(int index, Object item ): adds item to the list in position index
@@ -43,8 +45,8 @@ public class TreeList implements List {
     }
     
     /*
-     * add2(Node root, Node aux): inserta el nodo aux al arbol partiendo del nodo
-     * root y dependiendo del indice de la lsta.
+     * add2(Node root, Node aux): inserta el nodo aux al arbol partiendo del
+     * nodo root y dependiendo del indice de la lsta.
      */
     private void add2(Node root, Node aux) {
         if (root.getIndex() > aux.getIndex()) {
@@ -190,7 +192,7 @@ public class TreeList implements List {
      */
     @Override
     public void removeAll() {
-        setRoot(null);
+        root = null;
     }
     
     /*
@@ -244,7 +246,8 @@ public class TreeList implements List {
      *        nodos del árbol, y las claves del árbol son 0..size-1.
      */
     
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @CheckRep
+    @SuppressWarnings({ "rawtypes", "unchecked" })   
     public boolean repOK() {
         if (getRoot() == null) {
             return size == 0;
@@ -323,25 +326,7 @@ public class TreeList implements List {
         }
     }
     
-    /**
-     * @param root
-     *            el root a cambiar, para testing solamente. Utilizable si se
-     *            instancia un objeto tipo TreeList sin utilizar la interfaz
-     *            List
-     */
-    public void setRoot(Node root) {
-        this.root = root;
-    }
-    
-    /**
-     * @param size
-     *            el size a cambiar, para testing solamente. Utilizable si se
-     *            instancia un objeto tipo TreeList sin utilizar la interfaz
-     *            List
-     */
-    public void setSize(int size) {
-        this.size = size;
-    }
+
     
     /**
      * size(): return size of the list.

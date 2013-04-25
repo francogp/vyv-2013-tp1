@@ -17,19 +17,19 @@ public class Node {
         
     }
     
-    Node(int index, Object info) {
+    public Node(int index, Object info) {
         this.index = index;
         this.info = info;
     }
     
-    Node(Node left, Node right, int index, Object info) {
+    public Node(Node left, Node right, int index, Object info) {
         this.left = left;
         this.right = right;
         this.index = index;
         this.info = info;
     }
     
-    Node(Object info) {
+    public Node(Object info) {
         this.info = info;
     }
     

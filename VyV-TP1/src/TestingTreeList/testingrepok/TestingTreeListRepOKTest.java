@@ -1,26 +1,29 @@
 /**
  * 
  */
-package treelist;
+package TestingTreeList.testingrepok;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import treelist.Node;
+
 /**
- * Testing obligatorio a mano, ya que estos metodos deben funcionar bien si o si
+ * Testing obligatorio a mano, ya que estos metodos deben funcionar bien si o si,
+ * bajo casos especificos detallados a continuación.
  * 
- * @author franco pellegrini
+ * @author Pellegrini Franco
  */
-public class TreeListRepOKTest {
+public class TestingTreeListRepOKTest {
     
     /**
-     * Test method for {@link treelist.TreeList#repOK()}. Bad info Bin Tree.
+     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Bad info Bin Tree.
      */
     @Test
     public void testRepOKBadInfoBinTree() {
-        TreeList tree = new TreeList();
+        TestingTreeList tree = new TestingTreeList();
         Node nodo1 = new Node(0, "nodo numero 1");
         Node nodo2 = new Node(1, "nodo numero 2");
         Node nodo3 = new Node(2, "nodo numero 3");
@@ -39,11 +42,11 @@ public class TreeListRepOKTest {
     }
     
     /**
-     * Test method for {@link treelist.TreeList#repOK()}. Ciclic "Tree"
+     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Ciclic "Tree"
      */
     @Test
     public void testRepOKCiclicBinTree() {
-        TreeList tree = new TreeList();
+        TestingTreeList tree = new TestingTreeList();
         Node nodo1 = new Node(0, "nodo numero 1");
         Node nodo2 = new Node(1, "nodo numero 2");
         Node nodo3 = new Node(2, "nodo numero 3");
@@ -66,11 +69,11 @@ public class TreeListRepOKTest {
     }
     
     /**
-     * Test method for {@link treelist.TreeList#repOK()}. Good Bin Tree.
+     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Good Bin Tree.
      */
     @Test
     public void testRepOKGoodBinTree() {
-        TreeList tree = new TreeList();
+        TestingTreeList tree = new TestingTreeList();
         Node nodo1 = new Node(0, "nodo numero 1");
         Node nodo2 = new Node(1, "nodo numero 2");
         Node nodo3 = new Node(2, "nodo numero 3");
@@ -89,11 +92,11 @@ public class TreeListRepOKTest {
     }
     
     /**
-     * Test method for {@link treelist.TreeList#repOK()}. Good Bin Tree.
+     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Good Bin Tree.
      */
     @Test
     public void testRepOKGoodBinTreeEmpty() {
-        TreeList tree = new TreeList();
+        TestingTreeList tree = new TestingTreeList();
         tree.setRoot(null);
         tree.setSize(0);
         
@@ -101,11 +104,11 @@ public class TreeListRepOKTest {
     }
     
     /**
-     * Test method for {@link treelist.TreeList#repOK()}. One element Bin Tree.
+     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. One element Bin Tree.
      */
     @Test
     public void testRepOKGoodBinTreeOneElement() {
-        TreeList tree = new TreeList();
+        TestingTreeList tree = new TestingTreeList();
         Node nodo1 = new Node(0, "nodo numero 1");
         tree.setRoot(nodo1);
         tree.setSize(1);
@@ -114,11 +117,11 @@ public class TreeListRepOKTest {
     }
     
     /**
-     * Test method for {@link treelist.TreeList#repOK()}. Not Sorted Index
+     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Not Sorted Index
      */
     @Test
     public void testRepOKnotSortedIndexBinTree() {
-        TreeList tree = new TreeList();
+        TestingTreeList tree = new TestingTreeList();
         Node nodo1 = new Node(0, "nodo numero 1");
         Node nodo2 = new Node(1, "nodo numero 2");
         Node nodo3 = new Node(2, "nodo numero 3");
@@ -139,12 +142,12 @@ public class TreeListRepOKTest {
     }
     
     /**
-     * Test method for {@link treelist.TreeList#repOK()}. Repeated index Bin
+     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Repeated index Bin
      * Tree.
      */
     @Test
     public void testRepOKRepeatedIndexBinTree() {
-        TreeList tree = new TreeList();
+        TestingTreeList tree = new TestingTreeList();
         Node nodo1 = new Node(0, "nodo numero 1");
         Node nodo2 = new Node(1, "nodo numero 2");
         Node nodo3 = new Node(2, "nodo numero 3");
@@ -165,11 +168,11 @@ public class TreeListRepOKTest {
     }
     
     /**
-     * Test method for {@link treelist.TreeList#repOK()}. Wrong Size
+     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Wrong Size
      */
     @Test
     public void testRepOKWrongSizeBinTree() {
-        TreeList tree = new TreeList();
+        TestingTreeList tree = new TestingTreeList();
         Node nodo1 = new Node(0, "nodo numero 1");
         Node nodo2 = new Node(1, "nodo numero 2");
         Node nodo3 = new Node(2, "nodo numero 3");
