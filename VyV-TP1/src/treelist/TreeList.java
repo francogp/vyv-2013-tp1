@@ -22,9 +22,7 @@ public class TreeList implements List {
     private int  size; // number of elements in the list
                        
     /**
-     * --------------------------------------------------------------------
      * add(int index, Object item ): adds item to the list in position index
-     * --------------------------------------------------------------------
      */
     @Override
     public void add(int index, Object item) throws RuntimeException,
@@ -36,20 +34,17 @@ public class TreeList implements List {
             throw new IndexOutOfBoundsException(
                     "index out of bounds in tree list");
         }
-        increaseIndexNodes(getRoot(), index); // incrementa el indice de todos
-                                              // los
-        // nodos que tiene indice mayor o
+        increaseIndexNodes(root, index);
+        // incrementa el indice de todos los nodos que tiene indice mayor o
         // igual al indice dado
         Node aux = new Node(index, item);
-        add2(getRoot(), aux);
+        add2(root, aux);
         size++;
     }
     
     /*
-     * -------------------------------------------------------------------- add2
-     * (Node root, Node aux): inserta el nodo aux al arbol partiendo del nodo
+     * add2(Node root, Node aux): inserta el nodo aux al arbol partiendo del nodo
      * root y dependiendo del indice de la lsta.
-     * --------------------------------------------------------------------
      */
     private void add2(Node root, Node aux) {
         if (root.getIndex() > aux.getIndex()) {
@@ -69,19 +64,15 @@ public class TreeList implements List {
     }
     
     /*
-     * --------------------------------------------------------------------
      * decreaseIndex (int index): decrementa index en 1.
-     * --------------------------------------------------------------------
      */
     private int decreaseIndex(int index) {
         return index--;
     }
     
     /*
-     * --------------------------------------------------------------------
      * decreaseIndexNodes (Node root, int index): decrementa el indice de todos
      * los nodos si su indice es mayor a index.
-     * --------------------------------------------------------------------
      */
     private void decreaseIndexNodes(Node root, int index) {
         if (root.getIndex() > index) {
@@ -98,9 +89,7 @@ public class TreeList implements List {
     }
     
     /**
-     * -------------------------------------------------------------------
      * get(int index): returns the reference to the object in position index
-     * --------------------------------------------------------------------
      */
     @Override
     public Object get(int index) throws IndexOutOfBoundsException {
@@ -112,29 +101,23 @@ public class TreeList implements List {
     }
     
     /**
-     * --------------------------------------------------------------------
      * @return root, para testing solamente. Utilizable si se instancia un
      *         objeto tipo TreeList sin utilizar la interfaz List
-     * --------------------------------------------------------------------
      */
     public Node getRoot() {
         return root;
     }
     
     /*
-     * -------------------------------------------------------------------- int
-     * increaseIndex (int index): incrementa index en 1.
-     * --------------------------------------------------------------------
+     * int increaseIndex (int index): incrementa index en 1.
      */
     private int increaseIndex(int index) {
         return index++;
     }
     
     /*
-     * --------------------------------------------------------------------
      * increaseIndexNodes (Node root, int index): incrementa el indice de todos
      * los nodos si su indice es mayor o igual a index.
-     * --------------------------------------------------------------------
      */
     private void increaseIndexNodes(Node root, int index) {
         if (root.getIndex() >= index) {
@@ -149,9 +132,7 @@ public class TreeList implements List {
     }
     
     /**
-     * -------------------------------------------------------------------
      * isEmpty(): if haven`t element in the list return true.
-     * --------------------------------------------------------------------
      */
     @Override
     public boolean isEmpty() {
@@ -159,9 +140,7 @@ public class TreeList implements List {
     }
     
     /**
-     * -------------------------------------------------------------------
      * remove(int index): removes item in the index position of the list
-     * --------------------------------------------------------------------
      */
     @Override
     public void remove(int index) throws IndexOutOfBoundsException {
@@ -175,10 +154,8 @@ public class TreeList implements List {
     }
     
     /*
-     * -------------------------------------------------------------------
      * remove2(Node root, int index): busca el item a borrar partiendo de root y
      * luego invoca metodos para borrar el info de index.
-     * -------------------------------------------------------------------
      */
     private void remove2(Node root, int index) {
         if (root.getIndex() == index) { // si index es igual a indice de root
@@ -208,10 +185,8 @@ public class TreeList implements List {
     }
     
     /**
-     * -------------------------------------------------------------------
      * removeAll(): removes all the items from the list Precondition: None
      * Postcondition: all elements are removed from the list.
-     * --------------------------------------------------------------------
      */
     @Override
     public void removeAll() {
@@ -219,10 +194,8 @@ public class TreeList implements List {
     }
     
     /*
-     * --------------------------------------------------------------------
      * removeNodeChildLeft(Node root): remover un nodo que solo tiene el hijo
      * izquierdo
-     * --------------------------------------------------------------------
      */
     private void removeNodeChildLeft(Node root) {
         root.setIndex(root.getLeft().getIndex());
@@ -232,10 +205,8 @@ public class TreeList implements List {
     }
     
     /*
-     * --------------------------------------------------------------------
      * removeNodeChildRight(Node root): remover un nodo que solo tiene el hijo
      * derecho
-     * --------------------------------------------------------------------
      */
     private void removeNodeChildRight(Node root) {
         root.setInfo(root.getRight().getInfo());
@@ -244,9 +215,7 @@ public class TreeList implements List {
     }
     
     /*
-     * --------------------------------------------------------------------
      * removeNodeTwoChild(Node root): remover un nodo que tiene ambos hijos.
-     * --------------------------------------------------------------------
      */
     private void removeNodeTwoChild(Node root) {
         if (root.getLeft().getRight() == null) {
@@ -265,7 +234,6 @@ public class TreeList implements List {
     }
     
     /**
-     * --------------------------------------------------------------------
      * invariante de representación de la estructura.
      * 
      * @return true si y sólo si la estructura es internamente consistente
@@ -274,7 +242,6 @@ public class TreeList implements List {
      *        búsqueda (respecto a index), todos los elementos del árbol son no
      *        nulos (respecto a info), size se corresponde con el número de
      *        nodos del árbol, y las claves del árbol son 0..size-1.
-     * --------------------------------------------------------------------
      */
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -339,12 +306,10 @@ public class TreeList implements List {
     }
     
     /*
-     * --------------------------------------------------------------------
      * Object search (Node root, int index): compara el indice de root con
      * index, si es igual retorna el info de root. En caso de que el index es
      * menor al indice de root busca por hijo izquierdo, sino buscar por el hijo
      * derecho.
-     * --------------------------------------------------------------------
      */
     private Object search(Node root, int index) {
         if (root.getIndex() == index) {
@@ -359,33 +324,27 @@ public class TreeList implements List {
     }
     
     /**
-     * --------------------------------------------------------------------
      * @param root
      *            el root a cambiar, para testing solamente. Utilizable si se
      *            instancia un objeto tipo TreeList sin utilizar la interfaz
      *            List
-     * --------------------------------------------------------------------
      */
     public void setRoot(Node root) {
         this.root = root;
     }
     
     /**
-     * --------------------------------------------------------------------
      * @param size
      *            el size a cambiar, para testing solamente. Utilizable si se
      *            instancia un objeto tipo TreeList sin utilizar la interfaz
      *            List
-     * --------------------------------------------------------------------
      */
     public void setSize(int size) {
         this.size = size;
     }
     
     /**
-     * -------------------------------------------------------------------
      * size(): return size of the list.
-     * --------------------------------------------------------------------
      */
     @Override
     public int size() {
