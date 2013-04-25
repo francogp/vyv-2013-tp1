@@ -16,7 +16,7 @@ import treelist.Node;
  * 
  * @author Pellegrini Franco
  */
-public class TestingTreeListRepOKTest {
+public class JunitTestingTreeRepOK {
     
     /**
      * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Bad info Bin Tree.
