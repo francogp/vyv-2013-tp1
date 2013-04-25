@@ -229,17 +229,23 @@ public class TreeList implements List {
         root.setRight(root.getLeft().getRight());
     }
     
-    // remover un nodo que solo tiene el hijo derecho
+    /*
+     * --------------------------------------------------------------------
+     * removeNodeChildRight(Node root): remover un nodo que solo tiene el hijo
+     * derecho
+     * --------------------------------------------------------------------
+     */
     private void removeNodeChildRight(Node root) {
         root.setInfo(root.getRight().getInfo());
         root.setLeft(root.getRight().getLeft());
         root.setRight(root.getRight().getRight());
     }
     
-    private void removeNodeNoChild(Node root) {
-        root = null;
-    }
-    
+    /*
+     * --------------------------------------------------------------------
+     * removeNodeTwoChild(Node root): remover un nodo que tiene ambos hijos.
+     * --------------------------------------------------------------------
+     */
     private void removeNodeTwoChild(Node root) {
         if (root.getLeft().getRight() == null) {
             // si el hijo izquierdo no tiene hijo derecho
