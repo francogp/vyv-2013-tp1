@@ -241,29 +241,49 @@ public class TreeList implements List {
         if (getRoot() == null) {
             return size == 0;
         } else {
-            // primero revisamos que no sea un grafo con ciclos.
-            Set visited = new HashSet();
-            Node current = getRoot();
-            Node lastSortedNode = null;
-            Stack parentStack = new Stack();
+            Set visited = new HashSet(); //para revisar si el grafo es ciclico
+            Node current = getRoot(); //nodo actual en el recorrido
+            Node lastSortedNode = null; //ultimo nodo recorrido en forma ordenada
+            Stack parentStack = new Stack(); //pila utilizada para el recorrido In-Order
+            
+            // utilizamos un algoritmo In-order iterativo para recorrer la estructura 
+            // revisando que no sea ciclica y que los elementos esten en el orden correcto
             while (!parentStack.isEmpty() || (current != null)) {
+                // si el nodo ya fue visitado, el grafo es ciclico y no es un arbol 
+                // binario
                 if ((current != null) && !visited.add(current)) {
                     return false;
                 }
                 if (current != null) {
+                    //si no es una hoja null, seguimos recorriendo
                     parentStack.push(current);
                     current = current.getLeft();
                 } else {
+                    // si estamos volviendo del lado izq, tratamos el nodo y su lado 
+                    // derecho
                     current = (Node) parentStack.pop();
-                    // mientras revisamos los ciclos, trabajamos el nodo
-                    // visitado,
-                    // revisando que este ordenado de forma correcta
-                    if ((lastSortedNode != null)
-                            && (current.getIndex() <= lastSortedNode.getIndex())) {
+                    
+                    // mientras revisamos los ciclos, verificamos el nodo
+                    if (((lastSortedNode != null) && !(current.getIndex() == (lastSortedNode
+                            .getIndex() + 1)))// revisando que este
+                                              // ordenado de forma correcta
+                            || !((current.getIndex() >= 0) && (current
+                                    .getIndex() <= (size - 1))) // las claves
+                                                                // del
+                                                                // árbol son
+                                                                // 0..size-1
+                            
+                            || (current.getInfo() == null) // todos los
+                                                           // elementos del
+                                                           // árbol son no nulos
+                                                           // (respecto a info)
+                            
+                    ) {
                         return false;
                     }
                     lastSortedNode = current;
-                    // continuamos el recorrido de la estructura
+                    
+                    // continuamos el recorrido de la estructura por el lado derecho
                     current = current.getRight();
                 }
             }
