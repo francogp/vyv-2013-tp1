@@ -1,10 +1,10 @@
-package treelist;
+package ar.verificacion.validacion.treelistimplementation;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
-import randoop.*;
 
+import randoop.CheckRep;
 import ar.verificacion.validacion.List;
 
 /**
@@ -20,9 +20,9 @@ import ar.verificacion.validacion.List;
 public class TreeList implements List {
     
     protected Node root; // tree that stores list' elements
-                       
+                         
     protected int  size; // number of elements in the list
-                       
+                         
     /**
      * add(int index, Object item ): adds item to the list in position index
      */
@@ -99,15 +99,7 @@ public class TreeList implements List {
             throw new IndexOutOfBoundsException(
                     "index out of bounds in tree list");
         }
-        return search(getRoot(), index);
-    }
-    
-    /**
-     * @return root, para testing solamente. Utilizable si se instancia un
-     *         objeto tipo TreeList sin utilizar la interfaz List
-     */
-    public Node getRoot() {
-        return root;
+        return search(root, index);
     }
     
     /*
@@ -247,13 +239,13 @@ public class TreeList implements List {
      */
     
     @CheckRep
-    @SuppressWarnings({ "rawtypes", "unchecked" })   
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public boolean repOK() {
-        if (getRoot() == null) {
+        if (root == null) {
             return size == 0;
         } else {
             Set visited = new HashSet(); // para revisar si el grafo es ciclico
-            Node current = getRoot(); // nodo actual en el recorrido
+            Node current = root; // nodo actual en el recorrido
             Node lastSortedNode = null; // ultimo nodo recorrido en forma
                                         // ordenada
             Stack parentStack = new Stack(); // pila utilizada para el recorrido
@@ -326,8 +318,6 @@ public class TreeList implements List {
         }
     }
     
-
-    
     /**
      * size(): return size of the list.
      */
@@ -340,8 +330,8 @@ public class TreeList implements List {
     public String toString() {
         StringBuffer buf = new StringBuffer();
         buf.append("{");
-        if (getRoot() != null) {
-            buf.append(getRoot().toString());
+        if (root != null) {
+            buf.append(root.toString());
         }
         buf.append("}");
         return buf.toString();

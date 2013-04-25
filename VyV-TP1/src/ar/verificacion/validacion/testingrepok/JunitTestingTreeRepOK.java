@@ -1,25 +1,28 @@
 /**
  * 
  */
-package TestingTreeList.testingrepok;
+package ar.verificacion.validacion.testingrepok;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import treelist.Node;
+import ar.verificacion.validacion.treelistimplementation.Node;
+
 
 /**
- * Testing obligatorio a mano, ya que estos metodos deben funcionar bien si o si,
- * bajo casos especificos detallados a continuación.
+ * Testing obligatorio a mano, ya que estos metodos deben funcionar bien si o
+ * si, bajo casos especificos detallados a continuación.
  * 
  * @author Pellegrini Franco
  */
 public class JunitTestingTreeRepOK {
     
     /**
-     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Bad info Bin Tree.
+     * Test method for
+     * {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Bad info
+     * Bin Tree.
      */
     @Test
     public void testRepOKBadInfoBinTree() {
@@ -42,7 +45,9 @@ public class JunitTestingTreeRepOK {
     }
     
     /**
-     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Ciclic "Tree"
+     * Test method for
+     * {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Ciclic
+     * "Tree"
      */
     @Test
     public void testRepOKCiclicBinTree() {
@@ -69,7 +74,9 @@ public class JunitTestingTreeRepOK {
     }
     
     /**
-     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Good Bin Tree.
+     * Test method for
+     * {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Good Bin
+     * Tree.
      */
     @Test
     public void testRepOKGoodBinTree() {
@@ -92,7 +99,9 @@ public class JunitTestingTreeRepOK {
     }
     
     /**
-     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Good Bin Tree.
+     * Test method for
+     * {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Good Bin
+     * Tree.
      */
     @Test
     public void testRepOKGoodBinTreeEmpty() {
@@ -104,7 +113,9 @@ public class JunitTestingTreeRepOK {
     }
     
     /**
-     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. One element Bin Tree.
+     * Test method for
+     * {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. One element
+     * Bin Tree.
      */
     @Test
     public void testRepOKGoodBinTreeOneElement() {
@@ -117,7 +128,9 @@ public class JunitTestingTreeRepOK {
     }
     
     /**
-     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Not Sorted Index
+     * Test method for
+     * {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Not Sorted
+     * Index
      */
     @Test
     public void testRepOKnotSortedIndexBinTree() {
@@ -142,8 +155,9 @@ public class JunitTestingTreeRepOK {
     }
     
     /**
-     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Repeated index Bin
-     * Tree.
+     * Test method for
+     * {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Repeated
+     * index Bin Tree.
      */
     @Test
     public void testRepOKRepeatedIndexBinTree() {
@@ -168,7 +182,8 @@ public class JunitTestingTreeRepOK {
     }
     
     /**
-     * Test method for {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Wrong Size
+     * Test method for
+     * {@link TestingTreeList.testingrepok.TestingTreeList#repOK()}. Wrong Size
      */
     @Test
     public void testRepOKWrongSizeBinTree() {
