@@ -68,6 +68,35 @@ public class TreeList implements List {
         
     }
     
+    /*
+     * --------------------------------------------------------------------
+     * decreaseIndex (int index): decrementa index en 1.
+     * --------------------------------------------------------------------
+     */
+    private int decreaseIndex(int index) {
+        return index--;
+    }
+    
+    /*
+     * --------------------------------------------------------------------
+     * decreaseIndexNodes (Node root, int index): decrementa el indice de todos
+     * los nodos si su indice es mayor a index.
+     * --------------------------------------------------------------------
+     */
+    private void decreaseIndexNodes(Node root, int index) {
+        if (root.getIndex() > index) {
+            root.setIndex(decreaseIndex(root.getIndex()));
+            if ((root.getLeft() != null) && (root.getLeft().getIndex() > index)) {
+                decreaseIndexNodes(root.getLeft(), index);
+            }
+            if (root.getRight() != null) {
+                decreaseIndexNodes(root.getRight(), index);
+            }
+        } else {
+            decreaseIndexNodes(root.getRight(), index);
+        }
+    }
+    
     /**
      * -------------------------------------------------------------------
      * get(int index): returns the reference to the object in position index
@@ -139,37 +168,31 @@ public class TreeList implements List {
                     "index out of bounds in tree list");
         }
         remove2(root, index);
+        decreaseIndexNodes(root, index);
         size--;
     }
     
+    /*
+     * -------------------------------------------------------------------
+     * remove2(Node root, int index): busca el item a borrar partiendo de root y
+     * luego invoca metodos para borrar el info de index.
+     * -------------------------------------------------------------------
+     */
     private void remove2(Node root, int index) {
         if (root.getIndex() == index) { // si index es igual a indice de root
-            if ((root.getLeft() != null) && (root.getRight() != null)) { // si
-                                                                         // root
-                                                                         // tiene
-                                                                         // 2
-                                                                         // hijos
+            if ((root.getLeft() != null) && (root.getRight() != null)) {
+                // si root tiene 2 hijos
                 removeNodeTwoChild(root);
             } else {
-                if ((root.getLeft() != null) && (root.getRight() == null)) { // si
-                                                                             // root
-                                                                             // tiene
-                                                                             // solo
-                                                                             // el
-                                                                             // hijo
-                                                                             // izquierdo
+                if ((root.getLeft() != null) && (root.getRight() == null)) {
+                    // si root solo tiene el hijo izquierdo
                     removeNodeChildLeft(root);
                 } else {
-                    if ((root.getLeft() == null) && (root.getRight() != null)) { // si
-                                                                                 // root
-                                                                                 // tiene
-                                                                                 // solo
-                                                                                 // el
-                                                                                 // hijo
-                                                                                 // derecho
+                    if ((root.getLeft() == null) && (root.getRight() != null)) {
+                        // si root solo tiene el hijo derecho
                         removeNodeChildRight(root);
                     } else { // si root no tiene hijos
-                        root.setInfo(null);
+                        root = null;
                     }
                 }
             }
@@ -193,6 +216,12 @@ public class TreeList implements List {
         setRoot(null);
     }
     
+    /*
+     * --------------------------------------------------------------------
+     * removeNodeChildLeft(Node root): remover un nodo que solo tiene el hijo
+     * izquierdo
+     * --------------------------------------------------------------------
+     */
     private void removeNodeChildLeft(Node root) {
         root.setIndex(root.getLeft().getIndex());
         root.setInfo(root.getLeft().getInfo());
@@ -200,28 +229,30 @@ public class TreeList implements List {
         root.setRight(root.getLeft().getRight());
     }
     
+    // remover un nodo que solo tiene el hijo derecho
     private void removeNodeChildRight(Node root) {
-        root.setIndex(root.getRight().getIndex());
         root.setInfo(root.getRight().getInfo());
         root.setLeft(root.getRight().getLeft());
         root.setRight(root.getRight().getRight());
     }
     
+    private void removeNodeNoChild(Node root) {
+        root = null;
+    }
+    
     private void removeNodeTwoChild(Node root) {
-        root.setInfo(root.getRight().getInfo());
-        if ((root.getRight().getLeft() != null)
-                && (root.getRight().getRight() != null)) {
-            removeNodeTwoChild(root.getRight());
-        } else {
-            if (root.getRight().getLeft() != null) {
-                root.setRight(root.getRight().getLeft());
-            } else {
-                if (root.getRight().getRight() != null) {
-                    root.setRight(root.getRight().getRight());
-                } else {
-                    root.setRight(null);
-                }
+        if (root.getLeft().getRight() == null) {
+            // si el hijo izquierdo no tiene hijo derecho
+            root.setInfo(root.getLeft().getInfo());
+            root.setIndex(root.getLeft().getIndex());
+            root.setLeft(root.getLeft().getLeft());
+        } else { // el hijo izquierdo tiene hijo derecho
+            Node aux = root.getLeft();
+            while (aux.getRight().getRight() != null) {
+                aux = aux.getRight();
             }
+            root.setInfo(aux.getRight().getInfo());
+            aux.setRight(aux.getRight().getLeft());
         }
     }
     
@@ -241,25 +272,31 @@ public class TreeList implements List {
         if (getRoot() == null) {
             return size == 0;
         } else {
-            Set visited = new HashSet(); //para revisar si el grafo es ciclico
-            Node current = getRoot(); //nodo actual en el recorrido
-            Node lastSortedNode = null; //ultimo nodo recorrido en forma ordenada
-            Stack parentStack = new Stack(); //pila utilizada para el recorrido In-Order
+            Set visited = new HashSet(); // para revisar si el grafo es ciclico
+            Node current = getRoot(); // nodo actual en el recorrido
+            Node lastSortedNode = null; // ultimo nodo recorrido en forma
+                                        // ordenada
+            Stack parentStack = new Stack(); // pila utilizada para el recorrido
+                                             // In-Order
             
-            // utilizamos un algoritmo In-order iterativo para recorrer la estructura 
-            // revisando que no sea ciclica y que los elementos esten en el orden correcto
+            // utilizamos un algoritmo In-order iterativo para recorrer la
+            // estructura
+            // revisando que no sea ciclica y que los elementos esten en el
+            // orden correcto
             while (!parentStack.isEmpty() || (current != null)) {
-                // si el nodo ya fue visitado, el grafo es ciclico y no es un arbol 
+                // si el nodo ya fue visitado, el grafo es ciclico y no es un
+                // arbol
                 // binario
                 if ((current != null) && !visited.add(current)) {
                     return false;
                 }
                 if (current != null) {
-                    //si no es una hoja null, seguimos recorriendo
+                    // si no es una hoja null, seguimos recorriendo
                     parentStack.push(current);
                     current = current.getLeft();
                 } else {
-                    // si estamos volviendo del lado izq, tratamos el nodo y su lado 
+                    // si estamos volviendo del lado izq, tratamos el nodo y su
+                    // lado
                     // derecho
                     current = (Node) parentStack.pop();
                     
@@ -283,7 +320,8 @@ public class TreeList implements List {
                     }
                     lastSortedNode = current;
                     
-                    // continuamos el recorrido de la estructura por el lado derecho
+                    // continuamos el recorrido de la estructura por el lado
+                    // derecho
                     current = current.getRight();
                 }
             }
