@@ -36,11 +36,17 @@ public class TreeList implements List {
             throw new IndexOutOfBoundsException(
                     "index out of bounds in tree list");
         }
-        increaseIndexNodes(root, index);
+        increaseIndexNodes(root, index); // FIXME increaseIndexNodes() no
+                                         // soporta que root sea null
+        
         // incrementa el indice de todos los nodos que tiene indice mayor o
         // igual al indice dado
         Node aux = new Node(index, item);
-        add2(root, aux);
+        
+        add2(root, aux); // FIXME add2() no soporta que root sea null, hacer un
+                         // caso especial para cuando el arbol es vacio
+                         // (insertando el nodo directamente en root) y no usar
+                         // add2
         size++;
     }
     
