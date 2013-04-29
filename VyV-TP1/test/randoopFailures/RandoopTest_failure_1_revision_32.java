@@ -10,12 +10,12 @@ import junit.framework.TestCase;
  * arboles vacios (recien instanciados), y asume que siempre hay como minimo un
  * nodo en la estructura interna.
  * 
- * Este error es corregido en la revision
+ * Este error es corregido en la revision 35
  * 
  * @author Pellegrini Franco
  * 
  */
-public class RandoopTest_failure_1_revision32 extends TestCase {
+public class RandoopTest_failure_1_revision_32 extends TestCase {
     
     public static boolean debug = false;
     
