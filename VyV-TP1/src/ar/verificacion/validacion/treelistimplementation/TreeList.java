@@ -42,8 +42,7 @@ public class TreeList implements List {
                     "index out of bounds in tree list");
         }
         if (root == null) {
-            root.setIndex(index);
-            root.setInfo(item);
+            root = new Node(index, item);
         } else {
             Node aux = new Node(index, item);
             increaseIndexNodes(root, index);
