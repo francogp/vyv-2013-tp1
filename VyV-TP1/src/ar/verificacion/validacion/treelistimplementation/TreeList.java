@@ -197,7 +197,6 @@ public class TreeList implements List {
     @Override
     public void removeAll() {
         root = null;
-        size = 0;
     }
     
     /*
