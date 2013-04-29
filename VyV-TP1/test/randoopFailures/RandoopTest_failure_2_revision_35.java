@@ -9,7 +9,7 @@ import junit.framework.*;
  * archivo TreeList.java, en el cual la operación remove no tiene en cuenta
  * que al decrementar los indices, el arbol puede ser nulo.
  * 
- * Este error es corregido en la revision
+ * Este error es corregido en la revision 37
  * 
  * @author Pellegrini Franco
  * 

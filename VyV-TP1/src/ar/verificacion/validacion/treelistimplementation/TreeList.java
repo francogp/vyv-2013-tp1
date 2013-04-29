@@ -86,16 +86,19 @@ public class TreeList implements List {
      * los nodos si su indice es mayor a index.
      */
     private void decreaseIndexNodes(Node root, int index) {
-        if (root.getIndex() > index) {
-            root.setIndex(decreaseIndex(root.getIndex()));
-            if ((root.getLeft() != null) && (root.getLeft().getIndex() > index)) {
-                decreaseIndexNodes(root.getLeft(), index);
-            }
-            if (root.getRight() != null) {
+        if (root != null) {
+            if (root.getIndex() > index) {
+                root.setIndex(decreaseIndex(root.getIndex()));
+                if ((root.getLeft() != null)
+                        && (root.getLeft().getIndex() > index)) {
+                    decreaseIndexNodes(root.getLeft(), index);
+                }
+                if (root.getRight() != null) {
+                    decreaseIndexNodes(root.getRight(), index);
+                }
+            } else {
                 decreaseIndexNodes(root.getRight(), index);
             }
-        } else {
-            decreaseIndexNodes(root.getRight(), index);
         }
     }
     
@@ -194,6 +197,7 @@ public class TreeList implements List {
     @Override
     public void removeAll() {
         root = null;
+        size = 0;
     }
     
     /*
