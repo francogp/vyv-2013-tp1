@@ -23,6 +23,11 @@ public class TreeList implements List {
                          
     protected int  size; // number of elements in the list
                          
+    public TreeList() {
+        root = null;
+        size = 0;
+    }
+    
     /**
      * add(int index, Object item ): adds item to the list in position index
      */
@@ -36,17 +41,16 @@ public class TreeList implements List {
             throw new IndexOutOfBoundsException(
                     "index out of bounds in tree list");
         }
-        increaseIndexNodes(root, index); // FIXME increaseIndexNodes() no
-                                         // soporta que root sea null
-        
-        // incrementa el indice de todos los nodos que tiene indice mayor o
-        // igual al indice dado
-        Node aux = new Node(index, item);
-        
-        add2(root, aux); // FIXME add2() no soporta que root sea null, hacer un
-                         // caso especial para cuando el arbol es vacio
-                         // (insertando el nodo directamente en root) y no usar
-                         // add2
+        if (root == null) {
+            root.setIndex(index);
+            root.setInfo(item);
+        } else {
+            Node aux = new Node(index, item);
+            increaseIndexNodes(root, index);
+            // incrementa el indice de todos los nodos que tiene indice
+            // mayor o igual al indice dado
+            add2(root, aux);
+        }
         size++;
     }
     
