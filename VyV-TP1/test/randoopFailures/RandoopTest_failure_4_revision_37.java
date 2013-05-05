@@ -1,6 +1,6 @@
 package randoopFailures;
 
-import junit.framework.*;
+import junit.framework.TestCase;
 
 /**
  * Este archivo fue generado por randoop (configuracion por defecto, con una
@@ -12,28 +12,31 @@ import junit.framework.*;
  * 
  */
 public class RandoopTest_failure_4_revision_37 extends TestCase {
-
-  public static boolean debug = false;
-
-  public void test1() throws Throwable {
-
-    if (debug) System.out.printf("%nRandoopTest_failure_2.test1");
-
-
-    ar.verificacion.validacion.treelistimplementation.TreeList var0 = new ar.verificacion.validacion.treelistimplementation.TreeList();
-    var0.removeAll();
-    var0.removeAll();
-    boolean var3 = var0.isEmpty();
-    var0.add(0, (java.lang.Object)(byte)1);
-    int var7 = var0.size();
-    boolean var8 = var0.isEmpty();
-    int var9 = var0.size();
-    boolean var10 = var0.isEmpty();
-    var0.remove(0);
     
-    // Check representation invariant.
-    assertTrue("Representation invariant failed: Check rep invariant (method repOK) for var0", var0.repOK());
-
-  }
-
+    public static boolean debug = false;
+    
+    public void test1() throws Throwable {
+        
+        if (debug) {
+            System.out.printf("%nRandoopTest_failure_2.test1");
+        }
+        
+        ar.verificacion.validacion.treelistimplementation.TreeList var0 = new ar.verificacion.validacion.treelistimplementation.TreeList();
+        var0.removeAll();
+        var0.removeAll();
+        boolean var3 = var0.isEmpty();
+        var0.add(0, (byte) 1);
+        int var7 = var0.size();
+        boolean var8 = var0.isEmpty();
+        int var9 = var0.size();
+        boolean var10 = var0.isEmpty();
+        var0.remove(0);
+        
+        // Check representation invariant.
+        assertTrue(
+                "Representation invariant failed: Check rep invariant (method repOK) for var0",
+                var0.repOK());
+        
+    }
+    
 }

@@ -4,6 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
+import korat.finitization.IClassDomain;
+import korat.finitization.IFinitization;
+import korat.finitization.IIntSet;
+import korat.finitization.IObjSet;
+import korat.finitization.impl.FinitizationFactory;
 import randoop.CheckRep;
 import ar.verificacion.validacion.List;
 
@@ -15,9 +20,33 @@ import ar.verificacion.validacion.List;
  * 
  * @author Nazareno Aguirre, Valeria Bengolea & Renzo Degiovanni, Sung Pei Jung,
  *         Pellegrini Franco
- * @version 0.1 22/04/2013
+ * @version 0.5 22/04/2013
  */
 public class TreeList implements List {
+    
+    public static IFinitization finTreeList(int nodesNum, int maxInfo) {
+        IFinitization f = FinitizationFactory.create(TreeList.class);
+        IObjSet nodes = f.createObjSet(Node.class, nodesNum, true);
+        f.set(TreeList.class, "root", nodes);
+        f.set(Node.class, "left", nodes);
+        f.set(Node.class, "right", nodes);
+        
+        IObjSet elementosIntegers = f.createObjSet(Integer.class);
+        IClassDomain integersClassDomain = f.createClassDomain(Integer.class);
+        integersClassDomain.includeInIsomorphismCheck(false);
+        for (int i = 0; i <= maxInfo; i++) {
+            integersClassDomain.addObject(new Integer(i));
+        }
+        elementosIntegers.addClassDomain(integersClassDomain);
+        elementosIntegers.setNullAllowed(true); // null se incluye en el dominio
+        f.set(Node.class, "info", elementosIntegers);
+        
+        IIntSet intSet = f.createIntSet(0, nodesNum);
+        f.set(TreeList.class, "size", intSet);
+        f.set(Node.class, "index", intSet);
+        
+        return f;
+    }
     
     protected Node root; // tree that stores list' elements
                          

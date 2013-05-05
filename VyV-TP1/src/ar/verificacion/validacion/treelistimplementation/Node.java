@@ -90,7 +90,7 @@ public class Node {
     
     @Override
     public String toString() {
-        Set<Node> visited = new HashSet<>();
+        Set<Node> visited = new HashSet<Node>();
         visited.add(this);
         return toString(visited);
     }
