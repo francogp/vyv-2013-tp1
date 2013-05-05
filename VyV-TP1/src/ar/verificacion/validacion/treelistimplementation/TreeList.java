@@ -110,7 +110,7 @@ public class TreeList implements List {
     private void decreaseIndexNodes(Node root, int index) {
         if (root != null) {
             if (root.getIndex() > index) {
-                root.setIndex(root.getIndex()-1);
+                root.setIndex(root.getIndex() - 1);
                 if ((root.getLeft() != null)
                         && (root.getLeft().getIndex() > index)) {
                     decreaseIndexNodes(root.getLeft(), index);
@@ -142,7 +142,7 @@ public class TreeList implements List {
      */
     private void increaseIndexNodes(Node root, int index) {
         if (root.getIndex() >= index) {
-            root.setIndex(root.getIndex()+1);
+            root.setIndex(root.getIndex() + 1);
         }
         if (root.getLeft() != null) {
             increaseIndexNodes(root.getLeft(), index);
@@ -179,28 +179,84 @@ public class TreeList implements List {
      * luego invoca metodos para borrar el info de index.
      */
     private void remove2(Node root, int index) {
-        if (root.getIndex() == index) { // si index es igual a indice de root
-            if ((root.getLeft() != null) && (root.getRight() != null)) {
-                // si root tiene 2 hijos
-                removeNodeTwoChild(root);
-            } else {
-                if ((root.getLeft() != null) && (root.getRight() == null)) {
-                    // si root solo tiene el hijo izquierdo
+        if (this.root.getIndex() == index) { // si el elemento a borrar es la
+                                             // raiz
+            if (size == 1) {// caso base, el elemento a borrar es la raiz
+                            // y no hay mas elemento en el arbol.
+                this.root = null;
+            } else { // el elemento a borrar es la raiz y hay mas elementos
+                     // en el arbol
+                if ((this.root.getLeft() != null)
+                        && (this.root.getRight() == null)) {
+                    // si la raiz solo tiene el hijo izquierdo
                     removeNodeChildLeft(root);
-                } else {
-                    if ((root.getLeft() == null) && (root.getRight() != null)) {
-                        // si root solo tiene el hijo derecho
-                        removeNodeChildRight(root);
-                    } else { // si root no tiene hijos
-                        root = null;
-                    }
+                } else if ((this.root.getLeft() == null)
+                        && (this.root.getRight() != null)) {
+                    // si la raiz solo tiene el hijo derecho
+                    removeNodeChildRight(root);
+                } else if ((this.root.getLeft() != null)
+                        && (this.root.getRight() != null)) {
+                    // si la raiz tiene los 2 hijos
+                    removeNodeTwoChild(root);
                 }
             }
-        } else { // si index es distinto a indice de root
-            if (root.getIndex() > index) { // si index es menor a indice de root
+        } else { // el elemento a borrar no es la raiz
+            if ((root.getIndex() > index)
+                    && (root.getLeft().getIndex() != index)) {
+                // Caso 1: el indice de elemento a borrar es menor al nodo
+                // actual y
+                // el hijo izquierdo no es el elemento a borrar
                 remove2(root.getLeft(), index);
-            } else { // si index es mayor a indice de root
+            } else if ((root.getIndex() > index)
+                    && (root.getLeft().getIndex() == index)) {
+                // Caso 2: el indice de elemento a borrar es menor al nodo
+                // actual y
+                // el hijo izquierdo es el elemento a borrar
+                if ((root.getLeft().getLeft() == null)
+                        && (root.getLeft().getRight() == null)) {
+                    // Caso 2.1: si el hijo izquiero no tiene hijos
+                    root.setLeft(null);
+                } else if ((root.getLeft().getLeft() != null)
+                        && (root.getLeft().getRight() == null)) {
+                    // Caso 2.2: si el hijo izquiero solo tiene el hijo
+                    // izquierdo
+                    removeNodeChildLeft(root.getLeft());
+                } else if ((root.getLeft().getLeft() == null)
+                        && (root.getLeft().getRight() != null)) {
+                    // Caso 2.3: si el hijo izquierdo solo tiene el hijo derecho
+                    removeNodeChildRight(root.getLeft());
+                } else if ((root.getLeft().getLeft() != null)
+                        && (root.getLeft().getRight() != null)) {
+                    // Caso 2.4: si el hijo izquierdo tiene los 2 hijos
+                    removeNodeTwoChild(root.getLeft());
+                }
+            } else if ((root.getIndex() < index)
+                    && (root.getRight().getIndex() != index)) {
+                // Caso 3: el indice de elemento a borrar es mayor al nodo
+                // actual y
+                // el hijo derecho no es el elemento a borrar
                 remove2(root.getRight(), index);
+            } else if ((root.getIndex() < index)
+            // Caso 4: el indice de elemento a borrar es mayor al nodo actual y
+            // el hijo derecho es el elemento a borrar
+                    && (root.getRight().getIndex() == index)) {
+                if ((root.getRight().getLeft() == null)
+                        && (root.getRight().getRight() == null)) {
+                    // Caso 4.1: si el hijo derecho no tiene hijos
+                    root.setRight(null);
+                } else if ((root.getRight().getLeft() != null)
+                        && (root.getRight().getRight() == null)) {
+                    // Caso 4.2: si el hijo derecho solo tiene el hijo izquierdo
+                    removeNodeChildLeft(root.getRight());
+                } else if ((root.getRight().getLeft() == null)
+                        && (root.getRight().getRight() != null)) {
+                    // Caso 4.3: si el hijo derecho solo tiene el hijo derecho
+                    removeNodeChildRight(root.getRight());
+                } else if ((root.getRight().getLeft() != null)
+                        && (root.getRight().getRight() != null)) {
+                    // Caso 4.4: si el hijo derecho tiene los 2 hijos
+                    removeNodeTwoChild(root.getRight());
+                }
             }
         }
     }
