@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Node implements Serializable{
+public class Node implements Serializable {
     
     private static final long serialVersionUID = 5213187274889412089L;
-
-    private int    index;
     
-    private Object info;
+    private int               index;
     
-    private Node   left;
+    private Object            info;
     
-    private Node   right;
+    private Node              left;
+    
+    private Node              right;
     
     public Node() {
         

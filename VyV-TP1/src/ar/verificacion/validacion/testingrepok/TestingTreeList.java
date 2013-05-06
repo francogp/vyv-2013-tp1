@@ -15,6 +15,11 @@ import ar.verificacion.validacion.treelistimplementation.TreeList;
 public class TestingTreeList extends TreeList {
     
     /**
+     * 
+     */
+    private static final long serialVersionUID = 6354840739338482473L;
+    
+    /**
      * @return root
      */
     public Node getRoot() {
