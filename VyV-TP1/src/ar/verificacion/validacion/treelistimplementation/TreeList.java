@@ -204,14 +204,12 @@ public class TreeList implements List {
             if ((root.getIndex() > index)
                     && (root.getLeft().getIndex() != index)) {
                 // Caso 1: el indice de elemento a borrar es menor al nodo
-                // actual y
-                // el hijo izquierdo no es el elemento a borrar
+                // actual y el hijo izquierdo no es el elemento a borrar
                 remove2(root.getLeft(), index);
             } else if ((root.getIndex() > index)
                     && (root.getLeft().getIndex() == index)) {
                 // Caso 2: el indice de elemento a borrar es menor al nodo
-                // actual y
-                // el hijo izquierdo es el elemento a borrar
+                // actual y el hijo izquierdo es el elemento a borrar
                 if ((root.getLeft().getLeft() == null)
                         && (root.getLeft().getRight() == null)) {
                     // Caso 2.1: si el hijo izquiero no tiene hijos
@@ -233,8 +231,7 @@ public class TreeList implements List {
             } else if ((root.getIndex() < index)
                     && (root.getRight().getIndex() != index)) {
                 // Caso 3: el indice de elemento a borrar es mayor al nodo
-                // actual y
-                // el hijo derecho no es el elemento a borrar
+                // actual y el hijo derecho no es el elemento a borrar
                 remove2(root.getRight(), index);
             } else if ((root.getIndex() < index)
             // Caso 4: el indice de elemento a borrar es mayor al nodo actual y
@@ -278,8 +275,8 @@ public class TreeList implements List {
     private void removeNodeChildLeft(Node root) {
         root.setIndex(root.getLeft().getIndex());
         root.setInfo(root.getLeft().getInfo());
-        root.setLeft(root.getLeft().getLeft());
         root.setRight(root.getLeft().getRight());
+        root.setLeft(root.getLeft().getLeft());
     }
     
     /*
