@@ -21,7 +21,7 @@ public class RandoopTest_failure_2_revision_35 extends TestCase {
     public void test1() throws Throwable {
         
         if (debug) {
-            System.out.printf("%nRandoopTest_failure_4.test1");
+            System.out.printf("%nRandoopTest_failure_2_revision35.test1");
         }
         
         ar.verificacion.validacion.treelistimplementation.TreeList var0 = new ar.verificacion.validacion.treelistimplementation.TreeList();
