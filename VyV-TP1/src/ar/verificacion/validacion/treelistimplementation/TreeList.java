@@ -115,7 +115,8 @@ public class TreeList implements List {
                     if (root.getLeft().getIndex() > index) {
                         decreaseIndexNodes(root.getLeft(), index);
                     } else {
-                        if (root.getLeft().getRight().getIndex() > index) {
+                        if ((root.getLeft().getRight() != null)
+                                && (root.getLeft().getRight().getIndex() > index)) {
                             decreaseIndexNodes(root.getLeft().getRight(), index);
                         }
                     }
