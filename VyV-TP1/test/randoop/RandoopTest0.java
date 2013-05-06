@@ -2,11 +2,13 @@ package randoop;
 
 import junit.framework.*;
 
+@SuppressWarnings("unused")
 public class RandoopTest0 extends TestCase {
 
   public static boolean debug = false;
 
-  public void test1() throws Throwable {
+
+public void test1() throws Throwable {
 
     if (debug) System.out.printf("%nRandoopTest0.test1");
 

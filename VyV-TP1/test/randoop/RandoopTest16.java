@@ -1,7 +1,7 @@
 package randoop;
 
 import junit.framework.*;
-
+@SuppressWarnings("unused")
 public class RandoopTest16 extends TestCase {
 
   public static boolean debug = false;

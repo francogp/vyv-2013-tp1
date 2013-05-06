@@ -51,11 +51,11 @@ public class TestJUnitKoratSerializedObjects extends TestCase {
                 }
             }
             
-            System.out.println("Encontrados " + salida.size() + " TreeList"
-                    + "\nComenzando Test JUnit Parametrizado...");
         } catch (EOFException ex) {
             // Esto ocurre si alcanzamos el final del archivo
-            System.out.println("Se alcanzo el final del archivo.");
+            System.out.println("Se alcanzo el final del archivo."
+                    + "\nEncontrados " + salida.size() + " TreeList"
+                    + "\nComenzando Test JUnit Parametrizado...");
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (FileNotFoundException ex) {

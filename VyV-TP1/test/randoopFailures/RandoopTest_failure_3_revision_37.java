@@ -11,6 +11,7 @@ import junit.framework.TestCase;
  * @author Pellegrini Franco
  * 
  */
+@SuppressWarnings("unused")
 public class RandoopTest_failure_3_revision_37 extends TestCase {
     
     public static boolean debug = false;

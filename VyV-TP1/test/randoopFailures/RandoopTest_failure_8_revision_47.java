@@ -8,6 +8,7 @@ import junit.framework.TestCase;
  * 
  * @author Sung Pei Jung
  */
+@SuppressWarnings("unused")
 public class RandoopTest_failure_8_revision_47 extends TestCase {
     
     public static boolean debug = false;
