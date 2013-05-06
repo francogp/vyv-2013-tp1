@@ -1,10 +1,13 @@
 package ar.verificacion.validacion.treelistimplementation;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Node {
+public class Node implements Serializable{
     
+    private static final long serialVersionUID = 5213187274889412089L;
+
     private int    index;
     
     private Object info;

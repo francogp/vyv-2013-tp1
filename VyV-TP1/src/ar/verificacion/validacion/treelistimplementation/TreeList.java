@@ -1,5 +1,6 @@
 package ar.verificacion.validacion.treelistimplementation;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -22,7 +23,9 @@ import ar.verificacion.validacion.List;
  *         Pellegrini Franco
  * @version 0.5 22/04/2013
  */
-public class TreeList implements List {
+public class TreeList implements List, Serializable {
+    
+    private static final long serialVersionUID = -4560660258689490061L;
     
     public static IFinitization finTreeList(int nodesNum, int maxInfo) {
         IFinitization f = FinitizationFactory.create(TreeList.class);
