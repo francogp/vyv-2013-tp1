@@ -111,9 +111,14 @@ public class TreeList implements List {
         if (root != null) {
             if (root.getIndex() > index) {
                 root.setIndex(root.getIndex() - 1);
-                if ((root.getLeft() != null)
-                        && (root.getLeft().getIndex() > index)) {
-                    decreaseIndexNodes(root.getLeft(), index);
+                if (root.getLeft() != null) {
+                    if (root.getLeft().getIndex() > index) {
+                        decreaseIndexNodes(root.getLeft(), index);
+                    } else {
+                        if (root.getLeft().getRight().getIndex() > index) {
+                            decreaseIndexNodes(root.getLeft().getRight(), index);
+                        }
+                    }
                 }
                 if (root.getRight() != null) {
                     decreaseIndexNodes(root.getRight(), index);
@@ -362,7 +367,8 @@ public class TreeList implements List {
                             
                             || (current.getInfo() == null) // todos los
                                                            // elementos del
-                                                           // árbol son no nulos
+                                                           // árbol son no
+                                                           // nulos
                                                            // (respecto a info)
                             
                     ) {
@@ -390,12 +396,10 @@ public class TreeList implements List {
     private Object search(Node root, int index) {
         if (root.getIndex() == index) {
             return root.getInfo();
+        } else if (root.getIndex() < index) {
+            return search(root.getRight(), index);
         } else {
-            if (root.getIndex() < index) {
-                return search(root.getRight(), index);
-            } else {
-                return search(root.getLeft(), index);
-            }
+            return search(root.getLeft(), index);
         }
     }
     
