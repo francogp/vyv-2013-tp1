@@ -3,6 +3,8 @@
  */
 package korat;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,8 +14,6 @@ import java.io.ObjectInputStream;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-
-import junit.framework.TestCase;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,9 +28,13 @@ import ar.verificacion.validacion.treelistimplementation.TreeList;
  * @author franco pellegrini
  */
 @RunWith(Parameterized.class)
-public class TestJUnitKoratSerializedObjects extends TestCase {
+public class TestForKoratSerializedObjects {
     
-    private static final String KORAT_SERIALIZED_FILE = "test/korat/serialized/objects.korat";
+    /**
+     * Se opto por una ruta especifica para el archivo de onjetos ya que jumble
+     * no lo encontraba con rutas relativas
+     */
+    private static final String KORAT_OUTPUT_FILE = "/home/franco/Trabajos/Workspace/VyV-TP1/bin/korat/serializedobjects/objects.korat";
     
     @Parameterized.Parameters
     public static Collection<Object[]> inicializaParametroParaTest() {
@@ -38,52 +42,58 @@ public class TestJUnitKoratSerializedObjects extends TestCase {
         // korat
         ObjectInputStream inputStream = null;
         List<Object[]> salida = new LinkedList<Object[]>();
-        File filename = new File(KORAT_SERIALIZED_FILE);
-        System.out.println("Parseando archivo de Korat...");
-        try {
-            // Construimos un objeto ObjectInputStream
-            inputStream = new ObjectInputStream(new FileInputStream(filename));
-            Object obj = null;
-            
-            while ((obj = inputStream.readObject()) != null) {
-                if (obj instanceof TreeList) {
-                    salida.add(new Object[] { (TreeList) obj });
-                }
-            }
-            
-        } catch (EOFException ex) {
-            // Esto ocurre si alcanzamos el final del archivo
-            System.out.println("Se alcanzo el final del archivo."
-                    + "\nEncontrados " + salida.size() + " TreeList"
-                    + "\nComenzando Test JUnit Parametrizado...");
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            // Cerramos el ObjectInputStream
+        
+        File filename = new File(KORAT_OUTPUT_FILE);
+        if (!filename.exists()) {
+            System.err
+                    .println("NO SE ENCONTRO EL ARCHIVO DE OBJETOS A GENERADOS POR KORAT");
+        } else {
+            System.out.println("Parseando archivo de Korat: "
+                    + filename.toString());
             try {
-                if (inputStream != null) {
-                    inputStream.close();
+                // Construimos un objeto ObjectInputStream
+                inputStream = new ObjectInputStream(new FileInputStream(
+                        filename));
+                Object obj = null;
+                
+                while ((obj = inputStream.readObject()) != null) {
+                    if (obj instanceof TreeList) {
+                        salida.add(new Object[] { (TreeList) obj });
+                    }
                 }
+            } catch (EOFException ex) {
+                // Esto ocurre si alcanzamos el final del archivo
+                System.out.println("Se alcanzo el final del archivo."
+                        + "\nEncontrados " + salida.size() + " TreeList"
+                        + "\nComenzando Test JUnit Parametrizado...");
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
             } catch (IOException ex) {
                 ex.printStackTrace();
+            } finally {
+                // Cerramos el ObjectInputStream
+                try {
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         }
-        
         return salida;
     }
     
     private TreeList treeList;
     
     // Inicializamos el parametro del JUnit con un arbol a testear
-    public TestJUnitKoratSerializedObjects(TreeList treeList) {
+    public TestForKoratSerializedObjects(TreeList treeList) {
         this.treeList = treeList;
     }
     
-    private void testAdd() {
+    public void testAdd() {
         
         // agregamos algunos nodos mas para testear add
         treeList.add(0, 1);
@@ -108,13 +118,13 @@ public class TestJUnitKoratSerializedObjects extends TestCase {
     // Este test se evaluara por cada TreeList leido del archivo que produjo
     // korat
     @Test
-    public void testPrimeNumberChecker() {
+    public void testCompleto() {
         System.out.println("TreeList a testear : " + treeList.toString());
         testAdd();
         testRemove();
     }
     
-    private void testRemove() {
+    public void testRemove() {
         
         if (!treeList.isEmpty()) {
             // removemos el primer nodo (si lo tiene)
