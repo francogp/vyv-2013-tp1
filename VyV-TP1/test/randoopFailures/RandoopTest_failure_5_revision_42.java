@@ -7,7 +7,6 @@ import junit.framework.TestCase;
  * cota de tiempo de 5 minutos).
  * 
  * @author Pellegrini Franco
- * 
  */
 @SuppressWarnings("unused")
 public class RandoopTest_failure_5_revision_42 extends TestCase {

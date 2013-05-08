@@ -18,10 +18,10 @@ import ar.verificacion.validacion.List;
  * precisamente un árbol binario de búsqueda. Esta clase implementa los métodos
  * abstractos declarados en List, y corresponde a una implementación
  * polimórfica.
- * 
+ *  
  * @author Nazareno Aguirre, Valeria Bengolea & Renzo Degiovanni, Sung Pei Jung,
  *         Pellegrini Franco
- * @version 0.5 22/04/2013
+ * @version 1.0 7/5/2013
  */
 public class TreeList implements List, Serializable {
     

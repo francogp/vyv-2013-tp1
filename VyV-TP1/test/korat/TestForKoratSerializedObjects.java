@@ -31,7 +31,7 @@ import ar.verificacion.validacion.treelistimplementation.TreeList;
 public class TestForKoratSerializedObjects {
     
     /**
-     * Se opto por una ruta especifica para el archivo de onjetos ya que jumble
+     * Se opto por una ruta especifica para el archivo de objetos ya que jumble
      * no lo encontraba con rutas relativas
      */
     private static final String KORAT_OUTPUT_FILE = "/home/franco/Trabajos/Workspace/VyV-TP1/bin/korat/serializedobjects/objects.korat";

@@ -12,7 +12,6 @@ import junit.framework.TestCase;
  * Este error es corregido en la revision 37
  * 
  * @author Pellegrini Franco
- * 
  */
 @SuppressWarnings("unused")
 public class RandoopTest_failure_2_revision_35 extends TestCase {

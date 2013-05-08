@@ -9,7 +9,6 @@ import junit.framework.TestCase;
  * provienen del repOK, por lo que se deja su resolucion para el ejercicio 3.
  * 
  * @author Pellegrini Franco
- * 
  */
 @SuppressWarnings("unused")
 public class RandoopTest_failure_3_revision_37 extends TestCase {
